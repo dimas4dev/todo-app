@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
+
 import { SearchBar } from '../SearchBar';
 
 interface MainCardProps {
@@ -116,15 +117,11 @@ export const MainCard = ({ children }: MainCardProps) => {
     setTheme(newTheme);
   }
 
-  const onAdd = () => {
-    console.log('Add task');
-  }
-
   return (
     <Card>
       <Header>
         <h1>Tasks</h1>
-        <SearchBar onAdd={onAdd} />
+        <SearchBar/>
         <button title='toogleTheme' onClick={toogleTheme}>
           <img src={toggleImageSrc} alt="" />
         </button>
