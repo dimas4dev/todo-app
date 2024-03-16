@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
-import { IconTrash } from './core/IconTrash';
-import { IconDone } from './core/IconDone';
+import { IconTrash } from './core/Icons/IconTrash';
+import { IconDone } from './core/Icons/IconDone';
 
 const TaskContainer = styled.div`
   display: flex;

@@ -4,7 +4,7 @@ interface IconProps {
     width?: string;
 }
 
-export const IconTrash = ({ fill, className, width }: IconProps) => {
+export const IconTrash = ({ fill, width }: IconProps) => {
 
     const style = {
         fill: fill || 'none',
