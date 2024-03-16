@@ -1,4 +1,11 @@
+import { useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import styled from 'styled-components';
+
+import { RootState } from '../redux/store';
+import { addTodo } from '../redux/todosSlice';
+
+
 import { IconSearch } from './core/Icons/IconSearch';
 
 const SearchBarContainer = styled.div`
@@ -39,16 +46,28 @@ const AddButton = styled.button`
   }
 `;
 
-interface SearchBarProps {
-    onAdd: () => void;
-}
+export const SearchBar = () => {
+  const dispatch = useDispatch();
+  const todos = useSelector((state: RootState) => state.todos);
+  const [inputValue, setInputValue] = useState('');
 
-export const SearchBar = ({ onAdd }: SearchBarProps) => {
-    return (
-        <SearchBarContainer>
-            <IconSearch />
-            <SearchInput type="text" placeholder="Busca tu tarea o agregala..." />
-            <AddButton onClick={onAdd}>+</AddButton>
-        </SearchBarContainer>
-    );
+  const handleAddTodo = () => {
+    if (!inputValue.trim()) return;
+    dispatch(addTodo(inputValue));
+    setInputValue(''); 
+  };
+
+
+  return (
+    <SearchBarContainer>
+      <IconSearch />
+      <SearchInput
+        type="text"
+        placeholder="Busca tu tarea o agrégala..."
+        value={inputValue}
+        onChange={(e) => setInputValue(e.target.value)}
+      />
+      <AddButton onClick={handleAddTodo}>+</AddButton>
+    </SearchBarContainer>
+  );
 };
