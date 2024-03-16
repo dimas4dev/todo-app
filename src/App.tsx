@@ -1,22 +1,17 @@
 import { useSelector } from 'react-redux';
-
-import { RootState } from './redux/store';
+import { selectFilteredTodos } from './utilities/filterTodos'; // Ajusta la ruta según donde hayas colocado el archivo
 
 import { Task } from "./components/Task";
 import { SectionContainer } from "./components/core/Container";
 import { MainCard } from "./components/core/MainCard";
 
-
 function App() {
-
-  const todosStore = useSelector((state: RootState) => state.todos);
-
-  const { todos } = todosStore
+  const filteredTodos = useSelector(selectFilteredTodos);
 
   return (
     <SectionContainer>
       <MainCard>
-        {todos.map((todo) => (
+        {filteredTodos.map((todo) => (
           <Task key={todo.id} id={todo.id} title={todo.text} completed={todo.completed} />
         ))}
       </MainCard>

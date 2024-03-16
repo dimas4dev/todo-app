@@ -45,10 +45,17 @@ const todosSlice = createSlice({
         setSearchTerm: (state, action: PayloadAction<string>) => {
             state.searchTerm = action.payload;
         },
+
+        addTodoWithSearchTerm: (state) => {
+            if (!state.searchTerm.trim()) return;
+            const newTask = { id: nanoid(), text: state.searchTerm, completed: false };
+            state.todos.push(newTask);
+            state.searchTerm = '';
+        },
     },
 });
 
-export const { addTodo, removeTodo, setSearchTerm, completeTodo } = todosSlice.actions
+export const { addTodo, removeTodo, setSearchTerm, completeTodo, addTodoWithSearchTerm } = todosSlice.actions
 export default todosSlice.reducer;
 
 

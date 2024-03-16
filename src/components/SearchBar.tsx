@@ -2,8 +2,7 @@ import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import styled from 'styled-components';
 
-import { addTodo } from '../redux/todosSlice';
-
+import { addTodoWithSearchTerm, setSearchTerm } from '../redux/todosSlice';
 
 import { IconSearch } from './core/Icons/IconSearch';
 
@@ -49,12 +48,23 @@ export const SearchBar = () => {
   const dispatch = useDispatch();
   const [inputValue, setInputValue] = useState('');
 
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const value = e.target.value;
+    setInputValue(value);
+    dispatch(setSearchTerm(value));
+  };
+
   const handleAddTodo = () => {
     if (!inputValue.trim()) return;
-    dispatch(addTodo(inputValue));
+    dispatch(addTodoWithSearchTerm());
     setInputValue('');
   };
 
+  const handleKeyPress = (e: React.KeyboardEvent) => {
+    if (e.key === 'Enter' && inputValue.trim()) {
+      handleAddTodo();
+    }
+  };
 
   return (
     <SearchBarContainer>
@@ -63,7 +73,8 @@ export const SearchBar = () => {
         type="text"
         placeholder="Busca tu tarea o agrégala..."
         value={inputValue}
-        onChange={(e) => setInputValue(e.target.value)}
+        onChange={handleInputChange}
+        onKeyDown={handleKeyPress}
       />
       <AddButton onClick={handleAddTodo}>+</AddButton>
     </SearchBarContainer>
