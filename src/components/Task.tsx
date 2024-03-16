@@ -23,9 +23,11 @@ const TaskText = styled.p`
 const TaskButton = styled.button`
   background-color: transparent;
   border: none;
+  transition: transform 0.2s;
 
   &:hover {
     cursor: pointer;
+    transform: scale(1.1);
   }
 `;
 

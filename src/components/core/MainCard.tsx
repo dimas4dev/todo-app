@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import styled from 'styled-components';
 
 interface MainCardProps {
-    children: React.ReactNode;
+  children: React.ReactNode;
 }
 
 const Card = styled.div`
@@ -36,25 +36,99 @@ const Header = styled.header`
     }
   }
   `
+const Footer = styled.footer`
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  padding: 1rem;
+  width: 95%;
+  background-color: ${({ theme }) => theme.light.colors.background};
+  border-radius: 0 0 8px 8px;
+  margin: 1rem;
+  `
+const ClearButton = styled.button`
+background-color: #ff4136; 
+color: white;
+border: none;
+padding: 0.5rem 1rem;
+border-radius: 5px;
+transition: transform 0.2s, background-color 0.2s;
+&:hover {
+  cursor: pointer;
+  transform: scale(1.1);
+  background-color: #e74c3c;
+}
+
+&:focus {
+  outline: none;
+  box-shadow: 0 0 0 2px rgba(255, 65, 54, 0.4);
+}
+`;
+
+const CompletedButton = styled.button`
+  background-color: #2ecc71;
+  color: white;
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: 5px;
+  transition: transform 0.2s, background-color 0.2s;
+  
+  &:hover {
+    cursor: pointer;
+    transform: scale(1.1);
+    background-color: #27ae60;
+  }
+
+  &:focus {
+    outline: none;
+    box-shadow: 0 0 0 2px rgba(46, 204, 113, 0.4);
+  }
+`;
+
+const DeletedTasksButton = styled.button`
+  background-color: #7f8c8d;
+  color: white;
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: 5px;
+  transition: transform 0.2s, background-color 0.2s;
+  
+  &:hover {
+    cursor: pointer;
+    transform: scale(1.1);
+    background-color: #707b7c;
+  }
+
+  &:focus {
+    outline: none;
+    box-shadow: 0 0 0 2px rgba(127, 140, 141, 0.4);
+  }
+`;
+
 
 export const MainCard = ({ children }: MainCardProps) => {
-    const [theme, setTheme] = useState('light');
-    const toggleImageSrc = theme === 'light' ? '/images/icon-moon.svg' : '/images/icon-sun.svg';
+  const [theme, setTheme] = useState('light');
+  const toggleImageSrc = theme === 'light' ? '/images/icon-moon.svg' : '/images/icon-sun.svg';
 
-    const toogleTheme = () => {
-        const newTheme = theme === 'light' ? 'dark' : 'light';
-        setTheme(newTheme);
-    }
+  const toogleTheme = () => {
+    const newTheme = theme === 'light' ? 'dark' : 'light';
+    setTheme(newTheme);
+  }
 
-    return (
-        <Card>
-            <Header>
-                <h1>Tasks</h1>
-                <button title='toogleTheme' onClick={toogleTheme}>
-                    <img src={toggleImageSrc} alt="" />
-                </button>
-            </Header>
-            {children}
-        </Card>
-    );
+  return (
+    <Card>
+      <Header>
+        <h1>Tasks</h1>
+        <button title='toogleTheme' onClick={toogleTheme}>
+          <img src={toggleImageSrc} alt="" />
+        </button>
+      </Header>
+      {children}
+      <Footer>
+        <ClearButton title='clearTasks'>Clear Tasks</ClearButton>
+        <CompletedButton title='showCompletedTasks'>Completed</CompletedButton>
+        <DeletedTasksButton title='showDeletedTasks'>Deleted</DeletedTasksButton>
+      </Footer>
+    </Card>
+  );
 }
