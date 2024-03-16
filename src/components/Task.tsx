@@ -1,4 +1,7 @@
 import styled from 'styled-components';
+import { useDispatch } from 'react-redux';
+
+import { removeTodo, completeTodo } from '../redux/todosSlice';
 
 import { IconTrash } from './core/Icons/IconTrash';
 import { IconDone } from './core/Icons/IconDone';
@@ -14,10 +17,15 @@ const TaskContainer = styled.div`
   margin: 1rem;
 `;
 
-const TaskText = styled.p`
+const TaskText = styled.p<{ completed: boolean }>`
   color: ${({ theme }) => theme.light.colors.text};
   font-size: 1rem;
   font-weight: ${({ theme }) => theme.typography.fontWeight.regular};
+  ${(props) =>
+    props.completed &&
+    ` text-decoration: line-through;
+      color: #b0bec5;
+    `}
 `;
 
 const TaskButton = styled.button`
@@ -39,20 +47,31 @@ const IconDiv = styled.div`
   `;
 
 interface TaskProps {
-  task: string;
-  onRemove: () => void;
-  onComplete: () => void;
+  id: string;
+  title: string;
+  completed: boolean;
 }
 
-export const Task = ({ task, onRemove, onComplete }: TaskProps) => {
+export const Task = ({ id, title, completed }: TaskProps) => {
+  const dispatch = useDispatch();
+
+  const handleRemoveTask = () => {
+    dispatch(removeTodo(id));
+  };
+
+  const handleToggleComplete = () => {
+    dispatch(completeTodo(id));
+  };
+
+
   return (
     <TaskContainer>
-      <TaskText>{task}</TaskText>
+      <TaskText completed={completed}>{title}</TaskText>
       <IconDiv>
-        <TaskButton title='completeTask' onClick={onComplete}>
+        <TaskButton title='completeTask' onClick={handleToggleComplete} >
           <IconDone />
         </TaskButton>
-        <TaskButton title='removeTask' onClick={onRemove}>
+        <TaskButton title='removeTask' onClick={handleRemoveTask}>
           <IconTrash />
         </TaskButton>
       </IconDiv>

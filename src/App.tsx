@@ -17,7 +17,7 @@ function App() {
     <SectionContainer>
       <MainCard>
         {todos.map((todo) => (
-          <Task key={todo.id} id={todo.id} title={todo.text} />
+          <Task key={todo.id} id={todo.id} title={todo.text} completed={todo.completed} />
         ))}
       </MainCard>
     </SectionContainer>

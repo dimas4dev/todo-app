@@ -4,6 +4,7 @@ import type { PayloadAction } from '@reduxjs/toolkit'
 interface Task {
     id: string
     text: string
+    completed: boolean
 }
 
 interface TodosState {
@@ -26,20 +27,28 @@ const todosSlice = createSlice({
             },
             prepare: (text: string) => {
                 const id = nanoid()
-                return { payload: { id, text } }
+                return { payload: { id, text, completed: false } }
             },
         },
 
         removeTodo: (state, action: PayloadAction<string>): void => {
             state.todos = state.todos.filter((todo) => todo.id !== action.payload);
         },
+
+        completeTodo: (state, action: PayloadAction<string>) => {
+            const todo = state.todos.find((todo) => todo.id === action.payload);
+            if (todo) {
+                todo.completed = !todo.completed;
+            }
+        },
+
         setSearchTerm: (state, action: PayloadAction<string>) => {
             state.searchTerm = action.payload;
         },
     },
 });
 
-export const { addTodo, removeTodo, setSearchTerm } = todosSlice.actions
+export const { addTodo, removeTodo, setSearchTerm, completeTodo } = todosSlice.actions
 export default todosSlice.reducer;
 
 

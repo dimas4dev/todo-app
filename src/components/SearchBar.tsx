@@ -1,8 +1,7 @@
 import { useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import styled from 'styled-components';
 
-import { RootState } from '../redux/store';
 import { addTodo } from '../redux/todosSlice';
 
 
@@ -48,13 +47,12 @@ const AddButton = styled.button`
 
 export const SearchBar = () => {
   const dispatch = useDispatch();
-  const todos = useSelector((state: RootState) => state.todos);
   const [inputValue, setInputValue] = useState('');
 
   const handleAddTodo = () => {
     if (!inputValue.trim()) return;
     dispatch(addTodo(inputValue));
-    setInputValue(''); 
+    setInputValue('');
   };
 
 
