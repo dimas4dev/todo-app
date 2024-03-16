@@ -1,15 +1,13 @@
-import styled from 'styled-components';
-
-const Title = styled.h1`
-  color: ${(props) => props.theme.colors.primary};
-  font-size: 2rem;
-`;
+import { SectionContainer } from "./components/core/Container";
+import { MainCard } from "./components/core/MainCard";
 
 function App() {
   return (
-    <div>
-      <Title>Hello Vite + React + TypeScript + Styled Components!</Title>
-    </div>
+    <SectionContainer>
+      <MainCard>
+        <h1>Hello, World!</h1>
+      </MainCard>
+    </SectionContainer>
   );
 }
 
