@@ -39,23 +39,23 @@ const IconDiv = styled.div`
   `;
 
 interface TaskProps {
-    task: string;
-    onRemove: () => void;
-    onComplete: () => void;
+  task: string;
+  onRemove: () => void;
+  onComplete: () => void;
 }
 
 export const Task = ({ task, onRemove, onComplete }: TaskProps) => {
-    return (
-        <TaskContainer>
-            <TaskText>{task}</TaskText>
-            <IconDiv>
-                <TaskButton title='completeTask' onClick={onComplete}>
-                    <IconDone />
-                </TaskButton>
-                <TaskButton title='removeTask' onClick={onRemove}>
-                    <IconTrash />
-                </TaskButton>
-            </IconDiv>
-        </TaskContainer>
-    );
+  return (
+    <TaskContainer>
+      <TaskText>{task}</TaskText>
+      <IconDiv>
+        <TaskButton title='completeTask' onClick={onComplete}>
+          <IconDone />
+        </TaskButton>
+        <TaskButton title='removeTask' onClick={onRemove}>
+          <IconTrash />
+        </TaskButton>
+      </IconDiv>
+    </TaskContainer>
+  );
 }
