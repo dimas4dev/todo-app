@@ -16,6 +16,10 @@ const Card = styled.div`
   background-color: ${({ theme }) => theme.light.colors.backgroundMainCard};
   border-radius: 8px;
   border: 1px solid ${({ theme }) => theme.light.colors.borderColor};
+
+  @media (max-width: 768px) {
+      width: 90vw;
+    }
 `;
 
 const Header = styled.header`
