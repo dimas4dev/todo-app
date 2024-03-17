@@ -2,23 +2,25 @@ import React, { useState } from 'react';
 import styled from 'styled-components';
 
 import { SearchBar } from '../SearchBar';
+import { useSelector } from 'react-redux';
+import { RootState } from '../../redux/store';
 
 interface MainCardProps {
   children: React.ReactNode;
 }
 
-const Card = styled.div`
+const Card = styled.div<{ colorTheme: string }>`
   display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  width: 50vw;
-  background-color: ${({ theme }) => theme.light.colors.backgroundMainCard};
+  width: 50%;
+  background-color: ${({ theme, colorTheme }) => colorTheme === 'dark' ? theme.dark.colors.backgroundMainCard : theme.light.colors.backgroundMainCard};
   border-radius: 8px;
-  border: 1px solid ${({ theme }) => theme.light.colors.borderColor};
+   overflow-y: auto;
 
   @media (max-width: 768px) {
-      width: 90vw;
+      width: 90%;
     }
 `;
 
@@ -27,11 +29,15 @@ const Header = styled.header`
   justify-content: space-between;
   padding: 1rem;
   align-items: center;
-  height: 10%;
+  height: 38%;
   width: 95%;
-  background-color: ${({ theme }) => theme.light.colors.background};
+  background-color: ${({ theme, colorTheme }) => colorTheme === 'dark' ? theme.dark.colors.backgroundHeaderCard : theme.light.colors.backgroundHeaderCard};
   border-radius: 8px 8px 0 0;
   margin: .7rem;
+
+  h1{
+    color: ${({ theme, colorTheme }) => colorTheme === 'dark' ? theme.dark.colors.titleText : theme.light.colors.titleText};
+  }
   
   @media (max-width: 768px) {
       display: flex;
@@ -48,17 +54,16 @@ const Header = styled.header`
   }
   `
 
-export const MainCard = ({ children }: MainCardProps) => {
-  const [theme, setTheme] = useState('light');
-  const [showSearchBar, setShowSearchBar] = useState(false);
+export const MainCard = ({ children, }: MainCardProps) => {
 
+  const darkMode = useSelector((state: RootState) => state.todos.theme);
 
   return (
-    <Card>
-      <Header>
+    <Card colorTheme={darkMode}>
+      <Header colorTheme={darkMode}>
         <h1>Tasks</h1>
         <div className="search-bar">
-          <SearchBar />
+          <SearchBar colorTheme={darkMode} />
         </div>
       </Header>
       {children}

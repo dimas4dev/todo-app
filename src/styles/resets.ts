@@ -8,6 +8,16 @@ html {
     font-size: 16px;
     font-family: 'Roboto', sans-serif;
     background-color: #f5f5f5;
+    height: 100%;
+}
+
+body {
+    padding: 0;
+    margin: 0;
+    font-size: 1rem;
+    font-family: 'Roboto', sans-serif;
+    background-color: #f5f5f5;
+    height: 100%;
 }
 
 a {
@@ -17,6 +27,10 @@ a {
 
 * {
     box-sizing: border-box;
+}
+
+#root {
+    height: 100%;
 }
 `
 

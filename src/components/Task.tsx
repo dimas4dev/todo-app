@@ -6,27 +6,28 @@ import { removeTodo, completeTodo } from '../redux/todosSlice';
 import { IconTrash } from './core/Icons/IconTrash';
 import { IconDone } from './core/Icons/IconDone';
 
-const TaskContainer = styled.div`
+const TaskContainer = styled.div<{ colorTheme: string }>`
   display: flex;
   justify-content: space-between;
   align-items: center;
   padding: 1rem;
   width: 95%;
-  background-color: ${({ theme }) => theme.light.colors.background};
+  background-color: ${({ theme, colorTheme }) => colorTheme === 'dark' ? theme.dark.colors.backgroundTodo : theme.light.colors.backgroundTodo};
   border-radius: 8px;
   margin: .5rem;
 `;
 
-const TaskText = styled.p<{ completed: boolean }>`
-  color: ${({ theme }) => theme.light.colors.text};
+const TaskText = styled.p<{ completed: boolean, colorTheme: string }>`
+  color: ${({ theme, colorTheme }) => colorTheme === 'dark' ? theme.dark.colors.textTodo : theme.light.colors.textTodo};
   font-size: 1rem;
   font-weight: ${({ theme }) => theme.typography.fontWeight.regular};
-  ${(props) =>
-    props.completed &&
-    ` text-decoration: line-through;
-      color: #b0bec5;
-    `}
+  ${({ completed, colorTheme, theme }) => completed && `
+      text-decoration: line-through;
+      font-style: italic;
+      color: ${colorTheme === 'dark' ? theme.dark.colors.textCompleted : theme.light.colors.textCompleted};
+  `}
 `;
+
 
 const TaskButton = styled.button`
   background-color: transparent;
@@ -52,7 +53,7 @@ interface TaskProps {
   completed: boolean;
 }
 
-export const Task = ({ id, title, completed }: TaskProps) => {
+export const Task = ({ id, title, completed, colorTheme }: TaskProps) => {
   const dispatch = useDispatch();
 
   const handleRemoveTask = () => {
@@ -65,8 +66,8 @@ export const Task = ({ id, title, completed }: TaskProps) => {
 
 
   return (
-    <TaskContainer>
-      <TaskText completed={completed}>{title}</TaskText>
+    <TaskContainer colorTheme={colorTheme}>
+      <TaskText colorTheme={colorTheme} completed={completed}>{title}</TaskText>
       <IconDiv>
         <TaskButton title='completeTask' onClick={handleToggleComplete} >
           <IconDone />

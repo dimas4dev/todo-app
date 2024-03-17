@@ -10,11 +10,13 @@ interface Task {
 interface TodosState {
     todos: Task[];
     searchTerm: string;
+    theme?: string;
 }
 
 const initialState: TodosState = {
     todos: [],
     searchTerm: '',
+    theme: 'light'
 };
 
 const todosSlice = createSlice({
@@ -52,10 +54,14 @@ const todosSlice = createSlice({
             state.todos.push(newTask);
             state.searchTerm = '';
         },
+
+        switchTheme: (state) => {
+            state.theme = state.theme === 'light' ? 'dark' : 'light';
+        }
     },
 });
 
-export const { addTodo, removeTodo, setSearchTerm, completeTodo, addTodoWithSearchTerm } = todosSlice.actions
+export const { addTodo, removeTodo, setSearchTerm, completeTodo, addTodoWithSearchTerm, switchTheme } = todosSlice.actions
 export default todosSlice.reducer;
 
 

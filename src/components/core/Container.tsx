@@ -2,20 +2,22 @@ import styled from 'styled-components';
 
 interface SectionContainerProps {
     children: React.ReactNode;
+    colorTheme: string;
 }
 
-const Container = styled.section`
+const Container = styled.section<{ colorTheme: string }>`
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
-  height: 100vh;
-  width: 100vw;
-  background-color: ${({ theme }) => theme.light.colors};
+  height: 100%;
+  width: 100%;
+  background-color: ${({ colorTheme, theme }) => colorTheme === 'dark' ?  theme.dark.colors.background : theme.light.colors};
 `;
 
-export const SectionContainer = ({ children }: SectionContainerProps) => {
+export const SectionContainer = ({ children, colorTheme }: SectionContainerProps) => {
     return (
-        <Container>
+        <Container colorTheme={colorTheme}>
             {children}
         </Container>
     );
