@@ -5,6 +5,8 @@ import styled from 'styled-components';
 import { addTodoWithSearchTerm, setSearchTerm } from '../redux/todosSlice';
 
 import { IconSearch } from './core/Icons/IconSearch';
+import IconEnter from '../assets/enter.webp';
+
 
 const SearchBarContainer = styled.div`
   display: flex;
@@ -20,6 +22,7 @@ const SearchInput = styled.input`
   outline: none;
   padding: 0.5rem;
   width: 100%;
+  text-overflow: ellipsis;
 
   &::placeholder {
     color: #7f8c8d;
@@ -33,7 +36,7 @@ const AddButton = styled.button`
   color: white;
   cursor: pointer;
   font-size: 1rem;
-  padding: 0.5rem;
+  padding: 0.25rem;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -41,6 +44,11 @@ const AddButton = styled.button`
 
   &:hover {
     background-color: #2980b9;
+  }
+
+  img {
+    width: 20px;
+    height: 20px;
   }
 `;
 
@@ -76,7 +84,7 @@ export const SearchBar = () => {
         onChange={handleInputChange}
         onKeyDown={handleKeyPress}
       />
-      <AddButton onClick={handleAddTodo}>+</AddButton>
+      <AddButton onClick={handleAddTodo}><img src={IconEnter} alt="Icon Enter" /></AddButton>
     </SearchBarContainer>
   );
 };

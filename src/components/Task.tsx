@@ -14,7 +14,7 @@ const TaskContainer = styled.div`
   width: 95%;
   background-color: ${({ theme }) => theme.light.colors.background};
   border-radius: 8px;
-  margin: 1rem;
+  margin: .5rem;
 `;
 
 const TaskText = styled.p<{ completed: boolean }>`
