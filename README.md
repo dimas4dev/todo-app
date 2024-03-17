@@ -1,30 +1,42 @@
-# React + TypeScript + Vite
+# Todo App para Habi
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Esta es una aplicación de lista de tareas (Todo App) desarrollada como parte de una prueba técnica para la posición de Desarrollador Frontend Mid en Habi. La aplicación permite a los usuarios crear, visualizar, y marcar tareas como completadas, así como buscar tareas específicas y cambiar entre temas claro y oscuro.
 
-Currently, two official plugins are available:
+## Tecnologías Utilizadas
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- **React**: Utilizado para construir la interfaz de usuario de la aplicación.
+- **Redux Toolkit**: Manejo del estado global de la aplicación.
+- **Styled-Components**: Para estilos CSS en componentes de React.
+- **TypeScript**: Lenguaje de programación tipado utilizado para mejorar el desarrollo y mantenimiento del código.
+- **Webpack** (Asumido): Herramienta para compilar JavaScript y otros recursos para el navegador.
+- **Jest** (Asumido): Marco de pruebas para JavaScript.
 
-## Expanding the ESLint configuration
+## Características Principales
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+- Creación de tareas.
+- Visualización de la lista de tareas.
+- Marcar tareas como completadas.
+- Búsqueda de tareas.
+- Cambio de tema (claro/oscuro).
 
-- Configure the top-level `parserOptions` property like this:
+## URL de la Aplicación
 
-```js
-export default {
-  // other rules...
-  parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json'],
-    tsconfigRootDir: __dirname,
-  },
-}
+La aplicación está desplegada en Verce y puede ser accedida en la siguiente URL: [Despliegue Vercel](https://todo-app-iota-ivory-78.vercel.app/)
+
+## Repositorio Git
+
+El código fuente de la aplicación está disponible en el siguiente repositorio de GitHub: [GitHub](https://github.com/dimas4dev/todo-app)
+
+## Instalación y Ejecución
+
+Para instalar y ejecutar la aplicación recomiendo que uses Bun en tu entorno local, si no conoces dicha herramientas la puedes encontrar aca: [Bun](https://bun.sh/), si no deseas usar Bun, puedes usar NPM o YARN, sigue estos pasos:
+
+```bash
+bun install
+bun run dev
 ```
-
-- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
-- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
+1. Clona el repositorio:
+```bash
+git clone https://github.com/dimas4dev/todo-app
+cd todo-app
+```
