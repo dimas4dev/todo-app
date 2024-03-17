@@ -51,6 +51,7 @@ interface TaskProps {
   id: string;
   title: string;
   completed: boolean;
+  colorTheme: string;
 }
 
 export const Task = ({ id, title, completed, colorTheme }: TaskProps) => {

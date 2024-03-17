@@ -64,28 +64,28 @@ function App() {
 
 
   return (
-    <SectionContainer colorTheme={darkMode} >
+    <SectionContainer colorTheme={darkMode || ''} >
       <ThemeDiv>
         {darkMode === 'dark' ? <IconSun fill='#ECEBEB' onClick={() => dispatch(switchTheme())} /> : <IconMoon onClick={() => dispatch(switchTheme())} />}
       </ThemeDiv>
-      <MainCard>
+      <MainCard colorTheme={darkMode || ''}>
         {
           filteredTodos.length === 0 && searchTerm.trim() === '' &&
           <>
             <NoTasks src={WorkStart} />
-            <NoTaskText colorTheme={darkMode}>Hora de Trabajar,<br />Crea una tarea para comenzar</NoTaskText>
+            <NoTaskText colorTheme={darkMode || ''}>Hora de Trabajar,<br />Crea una tarea para comenzar</NoTaskText>
           </>
         }
         {
           filteredTodos.length === 0 && searchTerm.trim() !== '' &&
           <>
             <NoTasks src={FindTask} />
-            <NoTaskText colorTheme={darkMode}>No se encontre esa tarea, deberias agregarla</NoTaskText>
+            <NoTaskText colorTheme={darkMode || ''}>No se encontre esa tarea, deberias agregarla</NoTaskText>
           </>
         }
         {
           filteredTodos.map((todo) => (
-            <Task colorTheme={darkMode} key={todo.id} id={todo.id} title={todo.text} completed={todo.completed} />
+            <Task colorTheme={darkMode || ''} key={todo.id} id={todo.id} title={todo.text} completed={todo.completed} />
           ))
         }
       </MainCard>

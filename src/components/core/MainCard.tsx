@@ -1,12 +1,11 @@
-import React, { useState } from 'react';
+import React from 'react';
 import styled from 'styled-components';
 
 import { SearchBar } from '../SearchBar';
-import { useSelector } from 'react-redux';
-import { RootState } from '../../redux/store';
 
 interface MainCardProps {
   children: React.ReactNode;
+  colorTheme?: string;
 }
 
 const Card = styled.div<{ colorTheme: string }>`
@@ -24,7 +23,7 @@ const Card = styled.div<{ colorTheme: string }>`
     }
 `;
 
-const Header = styled.header`
+const Header = styled.header<{ colorTheme: string }>`
   display: flex;
   justify-content: space-between;
   padding: 1rem;
@@ -54,16 +53,14 @@ const Header = styled.header`
   }
   `
 
-export const MainCard = ({ children, }: MainCardProps) => {
-
-  const darkMode = useSelector((state: RootState) => state.todos.theme);
+export const MainCard = ({ children, colorTheme }: MainCardProps) => {
 
   return (
-    <Card colorTheme={darkMode}>
-      <Header colorTheme={darkMode}>
+    <Card colorTheme={colorTheme || ''}>
+      <Header colorTheme={colorTheme || ''}>
         <h1>Tasks</h1>
         <div className="search-bar">
-          <SearchBar colorTheme={darkMode} />
+          <SearchBar />
         </div>
       </Header>
       {children}

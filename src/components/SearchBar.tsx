@@ -23,7 +23,6 @@ const SearchInput = styled.input`
   padding: 0.5rem;
   width: 100%;
   text-overflow: ellipsis;
-  /* background-color: ${({ colorTheme }) => colorTheme === 'dark' ? 'white' : '#ecf0f1'}; */
 
   &::placeholder {
     color: #7f8c8d;
