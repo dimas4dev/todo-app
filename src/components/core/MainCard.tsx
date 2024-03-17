@@ -28,7 +28,7 @@ const Header = styled.header<{ colorTheme: string }>`
   justify-content: space-between;
   padding: 1rem;
   align-items: center;
-  height: 38%;
+  height: 53%;
   width: 95%;
   background-color: ${({ theme, colorTheme }) => colorTheme === 'dark' ? theme.dark.colors.backgroundHeaderCard : theme.light.colors.backgroundHeaderCard};
   border-radius: 8px 8px 0 0;
