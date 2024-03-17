@@ -76,14 +76,14 @@ function App() {
         {
           filteredTodos.length === 0 && searchTerm.trim() === '' &&
           <>
-            <NoTasks src={WorkStart} />
+            <NoTasks src={WorkStart} alt='No hay tareas' />
             <NoTaskText colorTheme={darkMode || ''}>Hora de Trabajar,<br />Crea una tarea para comenzar</NoTaskText>
           </>
         }
         {
           filteredTodos.length === 0 && searchTerm.trim() !== '' &&
           <>
-            <NoTasks src={FindTask} />
+            <NoTasks src={FindTask} alt='¿Agregar tarea?' />
             <NoTaskText colorTheme={darkMode || ''}>No se encontre esa tarea, ¡Deberias agregarla!</NoTaskText>
           </>
         }
