@@ -1,7 +1,7 @@
 import { useSelector } from 'react-redux';
 import styled, { keyframes } from 'styled-components';
 
-import { selectFilteredTodos } from './utilities/filterTodos'; // Ajusta la ruta según donde hayas colocado el archivo
+import { selectFilteredTodos } from './utilities/filterTodos';
 
 import { Task } from "./components/Task";
 import { SectionContainer } from "./components/core/Container";

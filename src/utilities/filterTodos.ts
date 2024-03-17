@@ -1,5 +1,3 @@
-// Puedes colocar esto en un archivo separado si prefieres, por ejemplo en /selectors/todoSelectors.ts
-
 import { RootState } from '../redux/store';
 
 export const selectFilteredTodos = (state: RootState) => {
