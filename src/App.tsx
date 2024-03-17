@@ -52,6 +52,10 @@ display: flex;
   align-items: center;
   width: 50%;
   padding: 1rem;
+
+  @media (max-width: 768px) {
+    width: 90%;
+  }
   `;
 
 
@@ -80,7 +84,7 @@ function App() {
           filteredTodos.length === 0 && searchTerm.trim() !== '' &&
           <>
             <NoTasks src={FindTask} />
-            <NoTaskText colorTheme={darkMode || ''}>No se encontre esa tarea, deberias agregarla</NoTaskText>
+            <NoTaskText colorTheme={darkMode || ''}>No se encontre esa tarea, ¡Deberias agregarla!</NoTaskText>
           </>
         }
         {
