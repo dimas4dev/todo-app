@@ -10,7 +10,7 @@ const Container = styled.section<{ colorTheme: string }>`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  height: auto;
+  min-height: 100vh;
   width: 100%;
   background-color: ${({ colorTheme, theme }) => colorTheme === 'dark' ? theme.dark.colors.background : theme.light.colors};
 `;
