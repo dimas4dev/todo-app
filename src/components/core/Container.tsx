@@ -12,6 +12,7 @@ const Container = styled.section<{ colorTheme: string }>`
   align-items: center;
   min-height: 100vh;
   width: 100%;
+  overflow: auto;
   background-color: ${({ colorTheme, theme }) => colorTheme === 'dark' ? theme.dark.colors.background : theme.light.colors};
 `;
 
